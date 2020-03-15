@@ -32,8 +32,9 @@ for people in post.get_likes():
 print(counter)
 
 #Obtener la lista de followers de un hashtag (InstaBot).
+# Parece devolver aprox 80 de cada 1 #
 
-hashtags = ["Bariloche", "SanMartin", "Patagonia", "Sur",]
+hashtags = ["Bariloche", "SanMartin", "Patagonia", "Sur"]
 hashtag_users = []
 for hashtag in hashtags:
     users_one_hashtag = bot.get_hashtag_users(hashtag)
@@ -42,12 +43,58 @@ for hashtag in hashtags:
 
 print(hashtag_users)
 
+
+def users_list_from_hashtags(hashtags):
+	print("Importing ~ 85 usernames for each hashtag")
+	hashtag_users = []
+	try:
+		for hashtag in hashtags:
+   			 users_one_hashtag = bot.get_hashtag_users(hashtag)
+   			 for users in users_one_hashtag:
+        			hashtag_users.append(users)
+	except:
+		print("couldn't get users from given hashtags") 
+
+	return hashtag_users 
+
+
+
 #Obtener la lista de usuarios que likearon un post
 
-post = Post.from_shortcode(L.context, "Bh1wRc9Ha9VwwsHAFcHP-viJuh-favoZw0BB4U0")
-likers=[]
-for liker in post.get_likes():
-	likers.append(liker.username)
+def users_list_from_post_links_list(post_links_list):
+	print("Importing <1000 usernames for each post")
+	likers_id = [] 
+	likers_username= []
+	counter = 0
+	try:
+		for link in post_links_list: 
+			
+			post_id = bot.get_media_id_from_link("https://www.instagram.com/p/B9nKn1Th8h9/")
+			post_likers=bot.get_media_likers(post_id) 
+			likers_id.append(post_likers)
+		
+		for liker_id in likers_id:
+			likers_username[counter] = bot.get_username_from_user_id(likers_id[counter]) 
+ 			counter += 1
+	except:
+		print("couldn't get users from given posts")
+	
+	return likers_username
+
+
+#Obtener la lista de usuarios que likearon un post
+def users_list_from_post_shortcode_list(post_shortcode_list):
+        print("Importing <1000 usernames for each post")
+	likers=[]
+	for shortcode in post_shortcode_list:
+		post = Post.from_shortcode(L.context, shortcode)
+		for liker in post.get_likes():
+       			likers.append(liker.username)
+			print(len(likers))
+			if len(likers) == 999:
+				break
+	return likers
+
 
 
 #Get metadata del usuario
@@ -72,6 +119,7 @@ bot.upload_photo(photo = "/home/santiago/Downloads/WhatsApp Image 2020-03-14 at 
 
 
 ### INTENTO DE CONSEGUIR UNA LISTA DE USERS #####
+
 hashtags = ["Bariloche", "SanMartin", "Patagonia", "Sur",]
 hashtag_users = []
 for hashtag in hashtags:
@@ -79,10 +127,7 @@ for hashtag in hashtags:
     for users in users_one_hashtag:
         hashtag_users.append(users)
 
-post = Post.from_shortcode(L.context, "Bh1wRc9Ha9VwwsHAFcHP-viJuh-favoZw0BB4U0")
-likers=[]
-for liker in post.get_likes():
-        likers.append(liker.username)
+
 
 
 candidates_to_follow = likers + hashtag_users
