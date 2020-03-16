@@ -98,11 +98,19 @@ def users_list_from_post_shortcode_list(post_shortcode_list):
 
 
 #Get metadata del usuario
-user_info_dic_list = []
-for user in users_to_follow[1:50]:
-    user_info = bot.get_user_info(user)
-    user_info_dic_list.append(user_info)
+def user_metadata_from_usernames_list(username_list): 
+	new_users_to_follow_info_dic_list = []
+	for user in username_list:
+    		user_info = bot.get_user_info(user)
+    		new_users_to_follow_info_dic_list.append(user_info)
 
+	return new_users_to_follow_info_dic_list
+
+#FILTRAR USUARIOS A SEGUIR
+
+def filter_userlist_to_daily_new_following(amount, usernames):
+	blacklist = open("blacklist.txt")
+	
 #Obtener ratio de seguidores
 
 USERNAME = "igalkej"

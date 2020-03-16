@@ -1,0 +1,17 @@
+2020-03-16 18:40:39,663 - instabot version: 0.115.0 (bot) - INFO - Instabot version: 0.115.0 Started
+2020-03-16 18:40:39,663 - instabot version: 0.115.0 (bot) - DEBUG - Bot imported from /usr/local/lib/python3.6/site-packages/instabot/bot/bot.py
+2020-03-16 18:40:39,663 - instabot version: 0.115.0 (api_login) - DEBUG - Loading cookies
+2020-03-16 18:40:39,663 - instabot version: 0.115.0 (api_login) - DEBUG - Loading uuids
+2020-03-16 18:40:39,664 - instabot version: 0.115.0 (api_login) - INFO - Recovery from /home/santiago/Documents/instabot/config/patagonian_review_uuid_and_cookie.json: COOKIE True - UUIDs True - TIMING, DEVICE and ...
+- user-agent=Instagram 117.0.0.28.123 Android (28/9.0; 420dpi; 1080x1920; OnePlus; ONEPLUS A3003; OnePlus3; qcom; en_US; 180322800)
+- phone_id=f0f782fa-417e-465b-af0d-8ff617f9ef1b
+- uuid=c4394ad7-b899-4746-b8c8-86e3ffc261ec
+- client_session_id=526d2d38-0e37-4eda-80f6-fa23b1f3c518
+- device_id=android-541a6cf91eda32d2
+2020-03-16 18:40:39,664 - instabot version: 0.115.0 (api_login) - INFO - LOGIN FLOW! Just logged-in: False
+2020-03-16 18:40:40,976 - instabot version: 0.115.0 (api) - DEBUG - POST to endpoint: feed/timeline/ returned response: <Response [200]>
+2020-03-16 18:40:41,501 - instabot version: 0.115.0 (api) - DEBUG - POST to endpoint: feed/reels_tray/ returned response: <Response [200]>
+2020-03-16 18:40:41,503 - instabot version: 0.115.0 (api) - INFO - Logged-in successfully as 'patagonian_review'!
+2020-03-16 18:40:41,503 - instabot version: 0.115.0 (bot_checkpoint) - DEBUG - Loading Checkpoint file from: /home/santiago/Documents/instabot/config/patagonian_review.checkpoint
+2020-03-16 18:40:41,504 - instabot version: 0.115.0 (bot_checkpoint) - DEBUG - Saving Checkpoint file to: /home/santiago/Documents/instabot/config/patagonian_review.checkpoint
+2020-03-16 18:40:41,505 - instabot version: 0.115.0 (bot) - INFO - Total requests: 2

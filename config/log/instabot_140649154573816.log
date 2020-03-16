@@ -1,0 +1,22 @@
+2020-03-16 18:47:40,234 - instabot version: 0.115.0 (bot) - INFO - Instabot version: 0.115.0 Started
+2020-03-16 18:47:40,234 - instabot version: 0.115.0 (bot) - DEBUG - Bot imported from /usr/local/lib/python3.6/site-packages/instabot/bot/bot.py
+2020-03-16 18:47:40,235 - instabot version: 0.115.0 (api_login) - DEBUG - Loading cookies
+2020-03-16 18:47:40,235 - instabot version: 0.115.0 (api_login) - DEBUG - Loading uuids
+2020-03-16 18:47:40,235 - instabot version: 0.115.0 (api_login) - INFO - Recovery from /home/santiago/Documents/instabot/config/patagonian_review_uuid_and_cookie.json: COOKIE True - UUIDs True - TIMING, DEVICE and ...
+- user-agent=Instagram 117.0.0.28.123 Android (28/9.0; 420dpi; 1080x1920; OnePlus; ONEPLUS A3003; OnePlus3; qcom; en_US; 180322800)
+- phone_id=f0f782fa-417e-465b-af0d-8ff617f9ef1b
+- uuid=c4394ad7-b899-4746-b8c8-86e3ffc261ec
+- client_session_id=526d2d38-0e37-4eda-80f6-fa23b1f3c518
+- device_id=android-541a6cf91eda32d2
+2020-03-16 18:47:40,235 - instabot version: 0.115.0 (api_login) - INFO - LOGIN FLOW! Just logged-in: False
+2020-03-16 18:47:41,448 - instabot version: 0.115.0 (api) - DEBUG - POST to endpoint: feed/timeline/ returned response: <Response [200]>
+2020-03-16 18:47:42,045 - instabot version: 0.115.0 (api) - DEBUG - POST to endpoint: feed/reels_tray/ returned response: <Response [200]>
+2020-03-16 18:47:42,047 - instabot version: 0.115.0 (api) - INFO - Logged-in successfully as 'patagonian_review'!
+2020-03-16 18:47:42,047 - instabot version: 0.115.0 (bot_checkpoint) - DEBUG - Loading Checkpoint file from: /home/santiago/Documents/instabot/config/patagonian_review.checkpoint
+2020-03-16 18:49:58,261 - instabot version: 0.115.0 (api) - DEBUG - GET to endpoint: users/28378487953/info/ returned response: <Response [200]>
+2020-03-16 18:49:58,678 - instabot version: 0.115.0 (api) - DEBUG - GET to endpoint: friendships/28378487953/followers/?rank_token=28378487953_c4394ad7-b899-4746-b8c8-86e3ffc261ec returned response: <Response [200]>
+2020-03-16 18:49:59,175 - instabot version: 0.115.0 (api) - DEBUG - GET to endpoint: users/28378487953/info/ returned response: <Response [200]>
+2020-03-16 18:49:59,610 - instabot version: 0.115.0 (api) - DEBUG - GET to endpoint: friendships/28378487953/following/?max_id=&ig_sig_key_version=4&rank_token=28378487953_c4394ad7-b899-4746-b8c8-86e3ffc261ec returned response: <Response [200]>
+2020-03-16 18:50:43,674 - instabot version: 0.115.0 (api) - DEBUG - GET to endpoint: feed/tag/patagonia/?max_id=&rank_token=28378487953_c4394ad7-b899-4746-b8c8-86e3ffc261ec&ranked_content=true& returned response: <Response [200]>
+2020-03-16 18:51:39,024 - instabot version: 0.115.0 (api) - DEBUG - GET to endpoint: feed/tag/sanmartin/?max_id=&rank_token=28378487953_c4394ad7-b899-4746-b8c8-86e3ffc261ec&ranked_content=true& returned response: <Response [200]>
+2020-03-16 18:51:42,741 - instabot version: 0.115.0 (api) - DEBUG - GET to endpoint: feed/tag/mountain/?max_id=&rank_token=28378487953_c4394ad7-b899-4746-b8c8-86e3ffc261ec&ranked_content=true& returned response: <Response [200]>
