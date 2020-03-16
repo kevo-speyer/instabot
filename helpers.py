@@ -25,3 +25,31 @@ def log_to_user(account_data):
         print("Error couldn't login to account with instabot")
 
     return L, bot
+
+
+def users_list_from_hashtags(hashtags):
+        print("Importing ~ 85 usernames for each hashtag")
+        hashtag_users = []
+        try:
+                for hashtag in hashtags:
+                         users_one_hashtag = bot.get_hashtag_users(hashtag)
+                         for users in users_one_hashtag:
+                                hashtag_users.append(users)
+        except:
+                print("couldn't get users from given hashtags") 
+
+        return hashtag_users
+
+
+def users_list_from_post_shortcode_list(post_shortcode_list):
+        print("Importing <1000 usernames for each post")
+        likers=[]
+        for shortcode in post_shortcode_list:
+                post = Post.from_shortcode(L.context, shortcode)
+                for liker in post.get_likes():
+                        likers.append(liker.username)
+                        print(len(likers))
+                        if len(likers) == 999:
+                                break
+        return likers
+
