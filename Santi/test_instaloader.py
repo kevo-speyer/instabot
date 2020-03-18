@@ -146,7 +146,9 @@ def unfollow_not_recent_followback():
 	for user in recent_followed: 
 		if user not in current_followers:
 			bot.unfollow(user)
-
+			 with open("blacklist.txt", "a") as f:
+                         f.write("%s\n" % user)
+			
 
 
 def unfollow_non_followers_until_ratio(desired_ratio):
