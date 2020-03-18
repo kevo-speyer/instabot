@@ -1,10 +1,15 @@
 #IMPORTACION DE LIBRERIAS#
 import instaloader
 import instabot
-
-#IMPORTACION DE CLASES DE INSTALOADER##
 from instaloader import Post
 from instaloader import Profile
+
+import os
+import csv
+import datetime
+from datetime import datetime
+from datetime import time
+
 
 #LOGIN INSTABOT#
 bot = instabot.Bot()
@@ -91,13 +96,87 @@ def users_list_from_post_shortcode_list(post_shortcode_list):
 
 
 #Get metadata del usuario
-def user_metadata_from_usernames_list(username_list): 
-	new_users_to_follow_info_dic_list = []
+def user_metadata_from_usernames_list(username_list):
+	new_following_info_list = []
 	for user in username_list:
-    		user_info = bot.get_user_info(user)
-    		new_users_to_follow_info_dic_list.append(user_info)
+    		user_id = bot.get_user_id_from_username(user)
+		user_info = bot.get_user_info(user_id)
+    		new_following_info_list.append(user_info)
 
-	return new_users_to_follow_info_dic_list
+	return new_following_info_list
+
+
+
+def follow_new_users(users_to_follow):
+	with open("recent_following.txt", "w") as f:
+		for user in users_to_follow:
+			f.write("%s\n" % user)
+			bot.follow(user)
+
+	new_following_data = user_metadata_from_usernames_list(users_to_follow) 
+ 	for dictionary in new_following_data: 
+		now=datetime.now()
+		dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+		dictionary["datetime"] = dt_string   
+	
+	with open("followed_users_data.json","r") as rf:
+		old_data = json.load(rf)
+		updated_data = old_data + new_following_data
+	
+	with open("followed_users_data.json","w") as wf:
+		json.dump(updated_data, wf)
+		 
+
+
+
+def unfollow_not_recent_followback():
+	counter = 0
+	current_followers = []
+	
+	for user_id in bot.followers:
+		current_followers.append(bot.get_username_from_user_id(user_id))
+	 
+	with open("recent_following.txt", "r") as rf:
+		reader=csv.reader(rf)
+		recent_followed = list(reader)
+	for user in recent_followed:
+		recent_followed[counter] = user[0]
+                counter += 1
+	
+	for user in recent_followed: 
+		if user not in current_followers:
+			bot.unfollow(user)
+
+
+
+def unfollow_non_followers_until_ratio(desired_ratio):
+	account_data_file = "./account_data.json"
+
+	with open(account_data_file, 'r') as fp:
+		account_data = json.load(fp)
+		username = account_data["user"] 
+	
+	dic_user_info=bot.get_user_info(username)
+	
+	followers = dic_user_info.get("follower_count")
+	followed = dic_user_info.get("following_count")
+	current_ratio = followers / followed
+	
+	if current_ratio < desired_ratio: 
+		followed_deseados = followers/desired_ratio
+		unfollows_to_perform = round(followed - followed_deseados)
+		bot.unfollow_non_followers(unfollows_to_perform)
+	else: 
+		print("Current ratio already satisfies your desire :)")
+		
+		
+	
+
+
+
+	
+
+
 
 #FILTRAR USUARIOS A SEGUIR
 
@@ -133,6 +212,9 @@ def definitive_users_to_follow_by_number(usernames, number):
 	
 	return definitive_list 
 	
+
+
+
 
 ##FOLLOW AND GATHER INFORMATION FUNCTION###
 
