@@ -27,7 +27,7 @@ TO DO:
     a) get users from hashtag  --> DONE users_list_from_hashtags()
     b) get media likers from selected posts --> DONE users_list_from_post_shortcode_list()
     c) Concatenar listas a y b --> simplemente lista1 + lista2  
-    d) Filtrar de c) y followers if not black listed ( 4 algo) ) 
+    d) Filtrar de c) y followers if not black listed ( 4 algo) )--> DONE filter_userlist_by_blacklist() and definitive_users_to_follow_by_number() 
     e) Follow y guardado de data  (con timestamp)
     
 4) Unfollow  (Santi)

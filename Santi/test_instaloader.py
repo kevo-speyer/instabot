@@ -25,37 +25,30 @@ print("{} follows these profiles:".format(profile.username))
 for followee in profile.get_followees():
     print(followee.username)
 
-#Get number of likes from post#
-counter=0
-for people in post.get_likes():
-	counter+=1
-print(counter)
 
-#Obtener la lista de followers de un hashtag (InstaBot).
-# Parece devolver aprox 80 de cada 1 #
-
-hashtags = ["Bariloche", "SanMartin", "Patagonia", "Sur"]
-hashtag_users = []
-for hashtag in hashtags:
-    users_one_hashtag = bot.get_hashtag_users(hashtag)
-    for users in users_one_hashtag:
-        hashtag_users.append(users)
-
-print(hashtag_users)
+#Get usernames for hashtaf
 
 
 def users_list_from_hashtags(hashtags):
 	print("Importing ~ 85 usernames for each hashtag")
 	hashtag_users = []
+	hashtag_usernames = []
+
 	try:
 		for hashtag in hashtags:
    			 users_one_hashtag = bot.get_hashtag_users(hashtag)
    			 for users in users_one_hashtag:
         			hashtag_users.append(users)
+		
+		for user_id in hashtag_users:
+			username = bot.get_username_from_user_id(user_id)
+			hashtag_usernames.append(username)
+					
+
 	except:
 		print("couldn't get users from given hashtags") 
 
-	return hashtag_users 
+	return hashtag_usernames 
 
 
 
@@ -108,9 +101,42 @@ def user_metadata_from_usernames_list(username_list):
 
 #FILTRAR USUARIOS A SEGUIR
 
-def filter_userlist_to_daily_new_following(amount, usernames):
-	blacklist = open("blacklist.txt")
+def filter_userlist_by_blacklist(usernames):
+	usernames_blacklist=[]
+	usernames_whitelist=[]
+	try:
+		with open("blacklist.txt") as f:
+			reader=csv.reader(f)
+			blacklist=list(reader)
 	
+	except:
+		print("couldn't find or open blacklist file")
+
+	try:
+		for user in blacklist:
+			user_id = user[0]
+	       		usernames_blacklist.append(user_id)
+
+				
+		for user in usernames: 
+			if user not in usernames_blacklist:
+				usernames_whitelist.append(user)
+							
+	except: 
+
+		print("couldn't get users to follow")	
+		
+	return usernames_whitelist
+
+def definitive_users_to_follow_by_number(usernames, number):
+	definitive_list = random.sample(usernames, number)
+	
+	return definitive_list 
+	
+
+##FOLLOW AND GATHER INFORMATION FUNCTION###
+
+		
 #Obtener ratio de seguidores
 
 USERNAME = "igalkej"
@@ -124,29 +150,5 @@ bot.upload_photo(photo = "/home/santiago/Downloads/WhatsApp Image 2020-03-14 at 
 
 #SEGUIR USUARIOS
 #bot.follow_users(hashtag_users[1:50])
-
-
-### INTENTO DE CONSEGUIR UNA LISTA DE USERS #####
-
-hashtags = ["Bariloche", "SanMartin", "Patagonia", "Sur",]
-hashtag_users = []
-for hashtag in hashtags:
-    users_one_hashtag = bot.get_hashtag_users(hashtag)
-    for users in users_one_hashtag:
-        hashtag_users.append(users)
-
-
-
-
-candidates_to_follow = likers + hashtag_users
-
-users_to_follow = random.sample(candidates_to_follow,100)
-
-bot.follow_users(users_to_follow)
-
-user_info_dic_list = []
-for user in users_to_follow:
-    user_info = bot.get_user_info(user)
-    user_info_dic_list.append(user_info)
 
 

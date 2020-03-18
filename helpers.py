@@ -30,15 +30,24 @@ def log_to_user(account_data):
 def users_list_from_hashtags(hashtags):
         print("Importing ~ 85 usernames for each hashtag")
         hashtag_users = []
+        hashtag_usernames = []
+
         try:
                 for hashtag in hashtags:
                          users_one_hashtag = bot.get_hashtag_users(hashtag)
                          for users in users_one_hashtag:
                                 hashtag_users.append(users)
-        except:
-                print("couldn't get users from given hashtags") 
 
-        return hashtag_users
+                for user_id in hashtag_users:
+                        username = bot.get_username_from_user_id(user_id)
+                        hashtag_usernames.append(username)
+
+
+        except:
+                print("couldn't get users from given hashtags")
+
+        return hashtag_usernames
+
 
 
 def users_list_from_post_shortcode_list(post_shortcode_list):
@@ -52,4 +61,53 @@ def users_list_from_post_shortcode_list(post_shortcode_list):
                         if len(likers) == 999:
                                 break
         return likers
+
+
+def filter_userlist_by_blacklist(usernames):
+        usernames_blacklist=[]
+        usernames_whitelist=[]
+        try:
+                with open("blacklist.txt") as f:
+                        reader=csv.reader(f)
+                        blacklist=list(reader)
+
+        except:
+                print("couldn't find or open blacklist file")
+
+        try:
+                for user in blacklist:
+                        user_id = user[0]
+                        usernames_blacklist.append(user_id)
+
+                
+                for user in usernames:
+                        if user not in usernames_blacklist:
+                                usernames_whitelist.append(user)
+                        
+        except: 
+
+                print("couldn't get users to follow")   
+                
+        return usernames_whitelist
+
+
+
+def definitive_users_to_follow_by_number(usernames, number):
+        definitive_list = random.sample(usernames, number)
+
+        return definitive_list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
