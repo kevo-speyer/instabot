@@ -31,7 +31,7 @@ TO DO:
     e) Follow y guardado de data  (con timestamp) --> DONE follow_new_users()
     
 4) Unfollow  (Santi)
-    a) Levantar la lista de followers
+    a) Levantar la lista de followers DONE bot.followers()
     b) De 3d, etiquetar "follow back" boolean
-    c) Criterio de unfollow ( "follow back"==false, mantener ratio followers/followees alto > 2. Eliminar a los que nunca interactuaron y tengo hace mas tiempo)
+    c) Criterio de unfollow ( "follow back"==false, mantener ratio followers/followees alto > 2. Eliminar a los que nunca interactuaron y tengo hace mas tiempo)DONE, por ahora el criterio es ratio deseado y no_follow_back. 
     d) Unfollow y guardado de data  
